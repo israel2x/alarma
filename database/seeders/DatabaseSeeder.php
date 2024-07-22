@@ -26,6 +26,21 @@ class DatabaseSeeder extends Seeder
             'estado' => 'ACTIVO',
         ]);
 
+        DB::table('tipo_usuarios')->insert([
+            'tipo_usuario' => 'Policia',
+            'estado' => 'ACTIVO',
+        ]);
+
+        DB::table('tipo_usuarios')->insert([
+            'tipo_usuario' => 'Bombero',
+            'estado' => 'ACTIVO',
+        ]);
+
+        DB::table('tipo_usuarios')->insert([
+            'tipo_usuario' => 'Ambulancia',
+            'estado' => 'ACTIVO',
+        ]);
+
         DB::table('users')->insert([
             'name' => 'Administrador',
             'email' => 'admin@gmail.com',

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\TipoUsuarioResource\Pages;
+use App\Filament\Resources\TipoUsuarioResource\RelationManagers;
+use App\Models\TipoUsuario;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,35 +13,23 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class UserResource extends Resource
+class TipoUsuarioResource extends Resource
 {
-    protected static ?string $model = User::class;
-    protected static ?string $navigationLabel = "Usuarios";
+    protected static ?string $model = TipoUsuario::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('tipo_usuario')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
+                Forms\Components\TextInput::make('estado')
                     ->required()
-                    ->maxLength(255),
-
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
-
-                /*  Forms\Components\Select::make('tipo_usuario_id')
-                    ->relationship(name: 'tipo_usuarios', titleAttribute: 'TipoUsuario')
-                    ->searchable()
-                    ->preload()
-                    ->live()
-                    ->required(), */
+                    ->maxLength(255)
+                    ->default('ACTIVO'),
             ]);
     }
 
@@ -49,13 +37,10 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('tipo_usuario')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email')
+                Tables\Columns\TextColumn::make('estado')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -88,9 +73,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListTipoUsuarios::route('/'),
+            'create' => Pages\CreateTipoUsuario::route('/create'),
+            'edit' => Pages\EditTipoUsuario::route('/{record}/edit'),
         ];
     }
 }

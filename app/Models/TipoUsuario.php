@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoUsuario extends Model
 {
-    use HasFactory;
+    //use HasFactory;
 
 
     public function user()
