@@ -21,10 +21,16 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        DB::table('tipo_usuarios')->insert([
+            'tipo_usuario' => 'Ciudadano',
+            'estado' => 'ACTIVO',
+        ]);
+
         DB::table('users')->insert([
             'name' => 'Administrador',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'tipo_usuarios_id' => 1,
         ]);
     }
 }
